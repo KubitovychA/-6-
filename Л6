@@ -1,0 +1,34 @@
+const arr = [
+    -5,                        
+    'Hello World',             
+    true,                      
+    { name: 'John' },          
+    [1, 2, 3],                 
+    function() { return 'hi'; }, 
+    null,                      
+    undefined,                 
+    Symbol('symbol'),          
+    new Date()                 
+];
+
+const newArrays = arr.reduce((acc, item) => {
+    // Отримуємо тип елемента
+    let type = typeof item;
+
+    // Особливий випадок для null
+    if (item === null) {
+        type = 'null';
+    }
+
+    // Ініціалізуємо масив для нового типу, якщо його ще немає
+    if (!acc[type]) {
+        acc[type] = [];
+    }
+
+    // Додаємо елемент до відповідного масиву
+    acc[type].push(item);
+
+    return acc;
+}, {});
+
+console.log(newArrays);
